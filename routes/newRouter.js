@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { messages, addMessage } = require("../db");
+const db = require("../db/queries");
 
 const newRouter = Router();
 
@@ -9,7 +9,7 @@ newRouter.get("/", (req, res) => {
 
 newRouter.post("/", (req, res) => {
   const { text, user } = req.body;
-  addMessage(text, user);
+  db.addMessages(text, user);
   res.redirect("/");
 });
 
